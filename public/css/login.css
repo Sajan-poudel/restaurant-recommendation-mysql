@@ -1,0 +1,83 @@
+* {
+    margin: 0px;
+    padding: 0px;
+ }
+
+ body {
+    font-family: 'Raleway', sans-serif;
+    line-height: 30px;
+    background-color: rgb(6, 6, 129);
+    color: aliceblue;
+ }
+ 
+ input {
+   border-bottom-style: solid;
+   border-top-style: hidden;
+   border-right-style:hidden;
+   border-left-style: hidden;
+   background: white;
+   font-size: larger;
+   margin: 10px;
+   width: 100%;
+   height: 50px;
+   color: #6a5acd;
+ }
+ 
+ #form {
+   position: absolute;
+   background: white;
+   border-radius: 10px;
+   max-width: 500px;
+   top: 40%;
+   left: 50%;
+   height: 450px;
+   transform: translate(-50%, -50%);
+ }
+
+ form{
+     margin: 12px;
+     margin-top: 20px;
+ }
+
+ #inputs{
+     margin-top: 30px;
+ }
+ 
+ h4 {
+   font-size: x-large;
+   padding: 2px;
+   margin: 10px;
+   color: #000;
+   letter-spacing: 2px;
+   font-weight: 400;
+   text-transform: uppercase;
+ }
+ 
+ .log {
+   width: 215px;
+   border-width: thin;
+   font-size: 20px;
+   border-radius: 20px;
+   padding: 0px;
+   background: #6a5acd;
+   color: #FFF;
+   letter-spacing: 2px;
+ }
+ 
+ ::placeholder {
+   color: gray;
+   letter-spacing: 2px;
+ }
+ 
+ #link {
+   font-size: 15px;
+   letter-spacing: normal;
+   text-transform: none;
+   color: #000;
+   padding: 5px;
+ }
+ 
+ a {
+   color: blue;
+   text-decoration: none;
+ }

@@ -1,0 +1,41 @@
+<?php
+require 'dbconfig/config.php';
+?>
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="/public/css/login.css">
+</head>
+<body style="background-color:#FFFF00">
+<div id="main-wrapper">
+<center><h1>ADMIN LOGIN HERE</h1>
+<img src="/public/img/logo.jpg" class="logo"/>
+</center>
+<form class="form" action="admin.php" method="post">
+<label><br>ADMINNAME OR ID</label><br>
+<input name="uname" type="text" class="inputvalues" placeholder="enter text here"/><br>
+<label><b>PASSWORD</label><br>
+<input name="pass" type="password" class="inputvalues" placeholder="type password"/><br>
+<input name="log" type="submit" id="login_btn" value="LOGIN"/><br>
+<a href="welcome.html"> <input type="button" id="register_btn" value="BACK"/></a>
+</form>
+<?php
+if(isset($_POST['log']))
+{$username=$_POST['uname'];
+ $password=$_POST['pass'];
+$query="select * from admin where username='$username' AND password='$password'";
+$query_run=mysqli_query($con,$query);
+if(mysqli_num_rows($query_run)>0)
+{
+$_SESSION['username']=$username;
+echo '<script type="text/javascript">alert("login successfull")</script>';
+}
+else
+{
+echo '<script type="text/javascript">alert("invalid credentials")</script>';
+}
+}
+?>
+</div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+* {
+    /* 
+    -May want to add "border-box for "box-sizing so padding does not affect width
+    -Reset margin and padding 
+    */
+    
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+
+    font-family: 'Raleway', sans-serif;
+    line-height: 30px;
+    background-color: rgb(6, 6, 129);
+    color: aliceblue;
+}
+
+a {
+
+    text-decoration: none;
+}
+
+#container {
+    /* 
+    -Remember, margin: auto on left and right will center a block element 
+    -I would also set a "max-width" for responsiveness
+    -May want to add some padding
+    */
+    margin: 12px auto;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 6px;
+    background-color: aliceblue;
+    color: black;
+
+}
+
+.form-wrap {
+
+    background-color: rgba(247 , 247, 250, 0.781);
+    color: black;
+
+}
+
+.form-wrap h1,
+.form-wrap p {
+    /* 
+      May want to center these
+    */
+    text-align: center;
+    color: rgb(73, 75, 78);
+
+}
+
+.form-wrap .form-group {
+
+    margin-top: 12px;
+
+}
+
+.form-wrap .form-group label {
+    /* 
+        Label should be turned into a block element
+    */
+
+    display: block;
+    color: rgb(62, 83, 102);
+    font-size: 20px;
+}
+
+.form-wrap .form-group input {
+
+    width: 100%;
+    padding: 5px;
+}
+
+.form-wrap button {
+    /* 
+      Button should wrap accross 100% and display as block
+    */
+    width: 100%;
+    background-color: #0cbe39;
+    color: ivory;
+    padding: 5px;
+    margin: 5px;
+    margin-top: 10px;
+    margin-left: 0px;
+    cursor: pointer;
+    border-radius: 8px;
+    border-color: darkslategrey;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+}
+
+.form-wrap button:hover {
+    /* 
+      Hover background color for button is #37a08e
+    */
+    background-color: rgb(7, 102, 47);
+    color: #e7f7f3;
+}
+
+.form-wrap .bottom-text {
+
+    font-size: 14px;
+}
+
+.form-wrap .bottom-text a{
+    color: rgb(30, 30, 221)
+}
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    color: #49c1a2;
+}
