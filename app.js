@@ -61,15 +61,29 @@ app.post('/auth', (req, res)=>{
             if(result.length > 0){
                 req.session.loggedin = true;
                 req.session.results = result;
-                console.log(result);
+                res.redirect('/home');
+            }else{
+                res.send("Incorrect email or password");
             }
         });
+    }else{
+        res.send('Please enter Email and Password!!');
     }
 
 });
 
+app.get('/auth', (res, req)=>{
+    console.log(res.body);
+});
+
 app.get('/register', (req, res)=>{
     res.render('register');
+});
+
+app.get('/home', (req, res)=>{
+    if(req.session.loggedin){
+        res.render('main');
+    }
 });
 
 app.listen(port, ()=>{
