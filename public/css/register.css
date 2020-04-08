@@ -13,7 +13,9 @@ body {
 
     font-family: 'Raleway', sans-serif;
     line-height: 30px;
-    background-color: rgb(6, 6, 129);
+    /* background-color: rgb(6, 6, 129); */
+    background-image: url(/img/registerimg.jfif);
+    background-size: cover;
     color: aliceblue;
 }
 
@@ -28,8 +30,10 @@ a {
     -I would also set a "max-width" for responsiveness
     -May want to add some padding
     */
-    margin: 12px auto;
-    max-width: 500px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 55%;
+    max-width: 40%;
     padding: 30px;
     border-radius: 6px;
     background-color: aliceblue;

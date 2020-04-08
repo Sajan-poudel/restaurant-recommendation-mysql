@@ -9,6 +9,16 @@
     background-color: rgb(6, 6, 129);
     color: aliceblue;
  }
+
+ #bg{
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+    
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+ }
  
  input {
    border-bottom-style: solid;

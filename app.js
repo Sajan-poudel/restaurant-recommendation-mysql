@@ -72,6 +72,26 @@ app.post('/auth', (req, res)=>{
 
 });
 
+app.post('/registration', (req, res)=>{
+    ({name, email, password, contact, latitude, longitude} = req.body);
+    if(name && email && contact && latitude && longitude){
+        if(password.length > 6){
+            console.log("databse");
+            connection.query('Insert INTO user VALUES (?, ?, ?, ?, ?, ?)', [name, email, password, contact, latitude, longitude], (err, result)=>{
+                if(err){
+                    res.send({error: err.sqlMessage});
+                }else{
+                    console.log(result);
+                }
+            });
+        }else{
+            res.send({error : "password should be more than 6 characters"});
+        }
+    }else{
+        res.send({error : "make sure to fill every field"});
+    }
+});
+
 app.get('/auth', (res, req)=>{
     console.log(res.body);
 });

@@ -2,6 +2,25 @@
     margin:0;
     padding:0;
     }
+
+    #bg {
+        position: fixed; 
+        top: -50px; 
+        left: 0; 
+          
+        /* Preserve aspet ratio */
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      #front{
+          position: fixed;
+          top: 0;
+          left: 0;
+
+          min-width: 100%;
+      }
+
     header{
     background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(../1.jpg);
     background-size:contain;
@@ -24,25 +43,21 @@
     background-color:#fff;
     color:#000000;
     }
-    .logo img{
-    float:left;
-    width:150px;
-    height:100px;
-    }
     .title{
     position:absolute;
-    top:50%;
-    left:50%;
+    top:40%;
+    left:40%;
     transform:translate(-50%,-50%);
     }
     .title h2{
     font-size:50px;
     color:#FFFF00;
     }
+    
     .button{
     position:absolute;
     top:60%;
-    left:50%;
+    left:26%;
     transform:translate(-50%,-50%);
     }
     .btn{

@@ -12,11 +12,12 @@
     
   </head>
   <body>
+    <!-- <img src="/public/img/registerimg.jfif" id = "bg" alt=""> -->
     <div id="container">
       <div class="form-wrap">
         <h1>Sign Up</h1>
         <p>It's free and only takes a minute</p>
-        <form>
+        <form action="registration" method="POST">
           <div class="form-group">
             <label for="name">FULL NAME</label>
             <input type="text" name="name" id="name" />
@@ -31,7 +32,7 @@
           </div>
           <div class="form-group">
             <label for="contact">contact number</label>
-            <input type="number" name="contanct" id="contact" />
+            <input type="number" name="contact" id="contact" />
           </div>
           <div class="form-group">
             <label for="latitude">latitude</label>
@@ -50,7 +51,7 @@
         </form>
       </div>
       <footer>
-        <p>Already have an account? <a href="#">Login Here</a></p>
+        <p>Already have an account? <a href="login">Login Here</a></p>
       </footer>
     </div>
   </body>
