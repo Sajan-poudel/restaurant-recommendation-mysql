@@ -92,6 +92,13 @@ app.post('/registration', (req, res)=>{
     }
 });
 
+app.post('/query', (req, res)=>{
+    connection.query(req.body.searchquery, (err, result)=>{
+        console.log(result);
+        res.render('home', {obj : result});
+    });
+})
+
 app.get('/auth', (res, req)=>{
     console.log(res.body);
 });
@@ -101,9 +108,10 @@ app.get('/register', (req, res)=>{
 });
 
 app.get('/home', (req, res)=>{
-    if(req.session.loggedin){
-        res.render('main');
-    }
+    // if(req.session.loggedin){
+        var obj = [];
+        res.render('home', {obj: obj});
+    // }
 });
 
 app.listen(port, ()=>{

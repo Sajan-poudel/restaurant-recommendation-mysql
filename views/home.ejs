@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>home page</title>
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+
+<body>
+    <img src="./img/homeimg.jpeg" id="bg" alt="">
+    <form action="query" method="post">
+        <div class="search-box">
+            <input class="search-txt" type="text" name="searchquery" placeholder="type the query to search">
+            <button type="submit" class="search-btn">
+                <div id="searchicon">
+                    &#9906;
+                </div>
+            </button>
+        </div>
+    </form>
+    <div class="container">
+        <% if(obj){ %>
+        <% if(obj.length > 0){ %>
+        <table>
+            <thead>
+                <tr>
+                    <% for(let head in obj[0]){ %>
+                    <th><%= head %></th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% obj.forEach(function(detail){ %>
+                <tr>
+                    <% for(let row in detail){ %>
+                    <th><%= detail[row] %></th>
+                    <% } %>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <% } %>
+        <% } %>
+    </div>
+</body>
+
+</html>
