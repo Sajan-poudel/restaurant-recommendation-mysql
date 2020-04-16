@@ -1,9 +1,4 @@
-* {
-    /* 
-    -May want to add "border-box for "box-sizing so padding does not affect width
-    -Reset margin and padding 
-    */
-    
+* { 
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;

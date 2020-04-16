@@ -22,29 +22,38 @@
             </button>
         </div>
     </form>
-    <div class="container">
-        <% if(obj){ %>
-        <% if(obj.length > 0){ %>
-        <table>
-            <thead>
-                <tr>
-                    <% for(let head in obj[0]){ %>
-                    <th><%= head %></th>
-                    <% } %>
-                </tr>
-            </thead>
-            <tbody>
-                <% obj.forEach(function(detail){ %>
-                <tr>
-                    <% for(let row in detail){ %>
-                    <th><%= detail[row] %></th>
-                    <% } %>
-                </tr>
-                <% }); %>
-            </tbody>
-        </table>
-        <% } %>
-        <% } %>
+    <div id="sentences">
+        <a href="/details">Dispaly all the restaurants details</a>
+    </div>
+    <div id="dispaly">
+        <div class="container">
+            <% if(obj){ %>
+            <% if(obj.length > 0){ %>
+            <table>
+                <thead>
+                    <tr>
+                        <% for(let head in obj[0]){ %>
+                        <th><%= head %></th>
+                        <% } %>
+                        <th>selection</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% obj.forEach(function(detail){ %>
+                    <form action="/details" method="post">
+                        <tr><% for(let row in detail){ %> <td><%= detail[row] %></td>
+                            <% } %>
+                            <td>
+                                <button type="submit">select</button>
+                            </td>
+                        </tr>
+                    </form>
+                    <% }); %>
+                </tbody>
+            </table>
+            <% } %>
+            <% } %>
+        </div>
     </div>
 </body>
 

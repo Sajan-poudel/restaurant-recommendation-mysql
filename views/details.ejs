@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIsplaying details</title>
+    <link rel="stylesheet" href="./css/details.css">
+</head>
+
+<body>
+    <div id="bodies">
+        <% if (obj.length > 1){ %>
+        <% obj.forEach(function(card){ %>
+        <div class="cards">
+            <div class="left">
+                <img src="./img/brownies.jpg" alt="">
+            </div>
+            <div class="right">
+                <div id="title">
+                    <h3><%= card.name %></h3>
+                </div>
+                <div class="para">
+                    <span>opening_hrs: <%= card.opening_hrs %></span>
+                    <span>| phone number: <%= card.phone_no %></span>
+                    <span>| offer: <%= card.offers %>%</span>
+                    <span>| deivery: <%= card.deivery %></span>
+                    <span>| email: <%= card.email %></span>
+                    <span>| famous_item: <%= card.famous_item %></span>
+                    <span>| parking: <%= card.parking %></span>
+                    <span>| address: <%= card.address %></span>
+
+                </div>
+            </div>
+        </div>
+        <% }); %>
+        <% }else{ %>
+            <div id="card">
+                <h1>hard rock</h1>
+                <div class="image-crop">
+                    <img id="avatar" src="./img/brownies.jpg"></img>
+                </div>
+                <div id="det">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi, repellat. Vel, velit ducimus? Mollitia vitae tenetur expedita, blanditiis fuga rem aperiam quidem. Quia nisi et totam ipsam sequi odit laborum.</p>
+                </div>
+                <div id="buttons">
+                    <button>back</button>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</body>
+
+</html>
