@@ -24,6 +24,7 @@
     </form>
     <div id="sentences">
         <a href="/details">Dispaly all the restaurants details</a>
+        <a href="/filterget">Filter result</a>
     </div>
     <div id="dispaly">
         <div class="container">
@@ -41,7 +42,7 @@
                 <tbody>
                     <% obj.forEach(function(detail){ %>
                     <form action="/details" method="post">
-                        <tr><% for(let row in detail){ %> <td><%= detail[row] %></td>
+                        <tr><% for(let row in detail){ %> <td ><%= detail[row] %></td>
                             <% } %>
                             <td>
                                 <button type="submit">select</button>

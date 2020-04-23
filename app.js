@@ -15,8 +15,8 @@ const connection = mysql.createConnection({
     database: 'RESTAURANT'
 });
 
-connection.connect((err)=>{
-    if(err){
+connection.connect((err) => {
+    if (err) {
         throw err;
     }
     console.log('COnnected to database');
@@ -40,109 +40,147 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(publicDirectoryPath));
 
-app.get('',(req, res)=>{
+app.get('', (req, res) => {
     res.render('welcome', {
         title: 'welcome'
     });
 });
 
-app.get('/login', (req, res)=>{
+app.get('/login', (req, res) => {
     res.render('login');
 });
 
-app.post('/auth', (req, res)=>{
+app.post('/auth', (req, res) => {
     var email = req.body.email;
     var password = req.body.password;
-    if(email && password){
-        connection.query('SELECT * FROM user WHERE email_id = ? AND password = ?', [email, password], (err, result)=>{
-            if(result.length > 0){
+    if (email && password) {
+        connection.query('SELECT * FROM user WHERE email_id = ? AND password = ?', [email, password], (err, result) => {
+            if (result.length > 0) {
                 req.session.loggedin = true;
                 req.session.results = result;
                 console.log(result);
-                connection.query('DELETE FROM active_user', (e, ress)=>{
-                    if(e){
-                        res.send({error: "something wrong in deleting"});
-                    }else{
-                        connection.query('INSERT INTO active_user VALUES (?, ?, ?, ?, ?, ?)', [result[0].name, result[0].email_id, result[0].password, result[0].connect_no, result[0].latitude_1, result[0].longitude_1], (er, r)=>{
-                            if(er){
-                                res.send({error: "error in inserting the values in active users"});
-                            }else{
+                connection.query('DELETE FROM active_user', (e, ress) => {
+                    if (e) {
+                        res.send({ error: "something wrong in deleting" });
+                    } else {
+                        connection.query('INSERT INTO active_user VALUES (?, ?, ?, ?, ?, ?)', [result[0].name, result[0].email_id, result[0].password, result[0].connect_no, result[0].latitude_1, result[0].longitude_1], (er, r) => {
+                            if (er) {
+                                res.send({ error: "error in inserting the values in active users" });
+                            } else {
                                 console.log
                                 res.redirect('/home');
                             }
                         });
                     }
                 });
-            }else{
+            } else {
                 res.send("Incorrect email or password");
             }
         });
-    }else{
+    } else {
         res.send('Please enter Email and Password!!');
     }
 
 });
 
-app.post('/registration', (req, res)=>{
-    ({name, email, password, contact, latitude, longitude} = req.body);
-    if(name && email && contact && latitude && longitude){
-        if(password.length > 6){
+app.post('/registration', (req, res) => {
+    ({ name, email, password, contact, latitude, longitude } = req.body);
+    if (name && email && contact && latitude && longitude) {
+        if (password.length > 6) {
             console.log("databse");
-            connection.query('Insert INTO user VALUES (?, ?, ?, ?, ?, ?)', [name, email, password, contact, latitude, longitude], (err, result)=>{
-                if(err){
-                    res.send({error: err.sqlMessage});
-                }else{
+            connection.query('Insert INTO user VALUES (?, ?, ?, ?, ?, ?)', [name, email, password, contact, latitude, longitude], (err, result) => {
+                if (err) {
+                    res.send({ error: err.sqlMessage });
+                } else {
                     console.log(result);
                 }
             });
-        }else{
-            res.send({error : "password should be more than 6 characters"});
+        } else {
+            res.send({ error: "password should be more than 6 characters" });
         }
-    }else{
-        res.send({error : "make sure to fill every field"});
+    } else {
+        res.send({ error: "make sure to fill every field" });
     }
 });
 
-app.post('/query', (req, res)=>{
-    connection.query(req.body.searchquery, (err, result)=>{
+app.post('/query', (req, res) => {
+    connection.query(req.body.searchquery, (err, result) => {
         // console.log(result);
-        res.render('home', {obj : result});
+        res.render('home', { obj: result });
     });
 })
 
-app.get('/details', (req, res)=>{
+app.get('/details', (req, res) => {
     console.log(res.body);
-    connection.query("SELECT * FROM restaurants", (err, result)=>{
-        if(err){
-            res.send({error : err});
-        }else{
-            res.render('details', {obj: result});
+    connection.query("SELECT * FROM restaurants", (err, result) => {
+        if (err) {
+            res.send({ error: err });
+        } else {
+            res.render('details', { obj: result });
         }
     });
 });
 
-app.post('/details', (req, res)=>{
+app.post('/details', (req, res) => {
     console.log(req.body);
 });
 
-app.get('/auth', (req, res)=>{
+app.get('/auth', (req, res) => {
     console.log(res.body);
 });
 
-app.get('/register', (req, res)=>{
+app.get('/register', (req, res) => {
     res.render('register');
 });
 
-app.get('/home', (req, res)=>{
-    if(req.session.loggedin){
+app.get('/home', (req, res) => {
+    if (req.session.loggedin) {
         var obj = [];
-        res.render('home', {obj: obj});
+        res.render('home', { obj: obj });
     }
 });
 
-app.listen(port, ()=>{
+app.get('/filterget', async (req, res) => {
+
+    connection.query('select cuis_type from cuisine group by cuis_type', function (err, cuis) {
+        // console.log(cuis);
+        res.render('dropdown', { obj: undefined, cuis });
+    });
+});
+
+app.post('/filterpost', (req, res) => {
+    console.log(req.body);
+    ({ cuisine, rating, parking, price } = req.body);
+    if (cuisine === 'SOUTH') {
+        cuisine = 'SOUTH INDIAN';
+    }
+    // Console.log(cuisine);
+    rating = parseFloat(rating);
+    console.log(rating);
+    re = price.split('-');
+    re1 = parseInt(re[0], 10);
+    re2 = parseInt(re[0], 10);
+
+    connection.query('SELECT res.name,res.email, res.phone_no, r.rating, res.parking, r.min_price, r.max_price FROM restaurants res, review r, cuisine c WHERE res.parking=? AND r.review_type = ? AND  res.rest_id = r.rev_id AND r.rating > ? AND res.rest_id = c.rest_id AND c.cuis_type = ? AND r.min_price < ?', [parking, "restaurant", rating, cuisine, re2], (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        if (result) {
+            connection.query('select cuis_type from cuisine group by cuis_type', function (err, cuis) {
+                // console.log(cuis);
+                res.render('dropdown', { obj: result, cuis });
+            });
+        }
+    });
+
+    // connection.query('select cuis_type from cuisine group by cuis_type', function (err, cuis) {
+    //     // console.log(cuis);
+    //     res.render('dropdown', { obj: undefined, cuis});
+    // });
+})
+
+app.listen(port, () => {
     console.log(`Server running on port: ${port}`);
 });

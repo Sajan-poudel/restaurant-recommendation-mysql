@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/drop.css">
+    <title>filter</title>
+</head>
+
+<body>
+    <!-- <img src="./img/filter.jpg" id="bg" alt=""> -->
+    <div id="optfilter">
+        <form action="filterpost" method="post">
+            <div class="select">
+                <label for="cuisine">Cuisine Type: </label>
+
+                <select name="cuisine" id="cuisine">
+                    <option hidden>choose your option</option>
+                    <% if(cuis.length > 1){ %>
+                        <% cuis.forEach(function(cu){ %>
+                            <option value= <%= cu.cuis_type %>><%= cu.cuis_type %></option>
+                        <% }); %>
+                    <% } %>
+                    <!-- <option value="Italian">Italian</option>
+                    <option value="Indian">indian</option>
+                    <option value="chinese">chinese</option>
+                    <option value="nepalese">nepalese</option> -->
+                </select>
+            </div>
+            <div>
+                <label for="range-slider">Rating</label>
+                <div id="range-slider">
+                    <label for="rs-range-line">0</label>
+                    <input type="range" name="rating" min="0" max="5" value="3" class="slider" id="rs-range-line" class="rs-range">
+                    <label for="rs-range-line">5</label>
+                </div>
+            </div>
+            <div>
+                <h3>Parking</h3>
+                <input type="radio" id="yes" name="parking" value="YES">
+                <label for="yes">YES</label><br>
+                <input type="radio" id="no" name="parking" value="NO">
+                <label for="no">NO</label><br>
+            </div>
+            <div class="select">
+                <label for="price">select the price range(min-price): </label>
+                <select name="price" id="price">
+                    <option hidden>choose your option</option>
+                    <option value="0-50">
+                        <40</option>
+                    <option value="40-50">40-50</option>
+                    <option value="50-100">50-100</option>
+                    <option value="100-10000">>100</option>
+                </select>
+            </div>
+            <input type="submit" name="register">
+        </form>
+    </div>
+    <div id="dispaly">
+        <div class="container">
+            <% if(obj){ %>
+            <% if(obj.length > 0){ %>
+            <table>
+                <thead>
+                    <tr>
+                        <% for(let head in obj[0]){ %>
+                        <th><%= head %></th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% obj.forEach(function(detail){ %>
+                    <form action="/details" method="post">
+                        <tr><% for(let row in detail){ %> <td ><%= detail[row] %></td>
+                            <% } %>
+                        </tr>
+                    </form>
+                    <% }); %>
+                </tbody>
+            </table>
+            <% } %>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>
